@@ -210,5 +210,4 @@ if (nrow(highest90) > 0) {
 } else {
   paste("No students have an average math score over 90.")
 }
-
 ```
