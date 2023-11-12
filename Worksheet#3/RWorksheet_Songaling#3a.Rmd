@@ -1,5 +1,5 @@
 ---
-title: "RWorksheet_Songaling#3a.Rmd"
+title: "RWorksheet_Songaling#3a"
 author: "Charles Daniel Songaling"
 date: "2023-10-08"
 output: pdf_document
@@ -8,29 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 ```{r}
-#code here
 
 #USING VECTORS
 #1 There is a built-in vector LETTERS contains the uppercase letters of the alphabet and letters which contains the lowercase letters of the alphabet.
@@ -77,7 +55,7 @@ city
   
   #d. Associate the data frame you have created in 2.(c) by naming the columns using the names() function. Change the column names by using names() function as City and Temperature. What is the R code and its result?
   names(data) <-c("City", "Temperature")
-  View(data)
+  names(data)
   
   #e. Print the structure by using str() function. Describe the output.
   str(data)

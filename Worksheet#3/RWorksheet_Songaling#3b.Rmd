@@ -1,5 +1,5 @@
 ---
-title: "RWorksheet_Songaling#3b.Rmd"
+title: "RWorksheet_Songaling#3b"
 author: "Charles Daniel Songaling"
 date: "2023-10-11"
 output: pdf_document
@@ -8,16 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 ```{r}
-#code here
-
 #1.  Create a data frame using the table below.
 
 #a. Write the codes.
@@ -117,5 +108,4 @@ print(greater_than_5_siblings)
 
 #4. Interpret the graph.
 # The graph in figure 3 shows the sentiments of people when tweeting during July 14 until July 21, 2020. It shows that the sentiment of people during that time span fluctuates regularly. It shows that negative tweets are higher than the positive and neutral tweets during that time span. It can also be seen that during July 15 and July 21, 2020, the number of negative tweets has risen immensely which means that something bad or negative must have happened for people to react to something like that negatively.
-
 ```
