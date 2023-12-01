@@ -12,21 +12,24 @@ knitr::opts_chunk$set(echo = TRUE)
 #1. Use the dataset mpg
 
 #a. Show your solutions on how to import a csv file into the environment.
-
 ```{r}
 library(readr)
 
 mpgdata <- read.csv("mpg.csv")
-mpgdata
+
 ```
 #b. Which variables from mpg dataset are categorical?
 ```{r}
-str(mpgdata)
+#1. Transmission        
+#2. Model                  
+#3. class      
+#4. Drive Train                 
+#5. Fuel type
+#6. manufacturer
 ```
 #c. Which are continuous variables?
 ```{r}
-continous_var <- c("disply","year","cyl","cty","hwy")
-continous_var
+#The continuous variables are x, displ, year, cyl, cty and hwy.
 ```
 #2. Which manufacturer has the most models in this data set? Which model has the most variations?Show your answer.
 ```{r}
@@ -59,21 +62,11 @@ print(manu_group)
 ```
 #b. Graph the result by using plot() and ggplot(). Write the codes and its result.
 ```{r}
-plot(manu_group$manufacturer, manu_group$uniquemodel,
-     main = "Number of Unique Models by Manufacturer",
-     xlab = "Manufacturer",
-     ylab = "Number of Unique Models",
-     col = "orange",
-     names.arg = manu_group$manufacturer,
-     las = 2, # Rotate the x-axis labels for better readability
-     cex.names = 0.7)
-     
-#ggplot
 library(ggplot2)
 ggplot(manu_group, aes(x=manufacturer,y = uniquemodel))+
   geom_bar(stat = "Identity",fill = "purple")+
   labs(title = "Unique models per manufacturer",
-       x = "Manufacturer",
+       x = "The Manufacturer",
        y = "Number of unique models")+
   theme_gray()
 ```
@@ -96,7 +89,7 @@ top_20obs <- head(mpg,20)
 
 ggplot(top_20obs, aes(x = model, y = year))+
   geom_point()+
-  labs(title = "Model vs Year(Top 20 observations)",
+  labs(title = "Model and Year(Top 20 observations)",
        x = "Model",
        y= "Year")+
   theme(axis.text.x = element_text(angle = 45,hjust = 1))
@@ -151,12 +144,9 @@ ggplot(top_20obs, aes(x = model, fill = model)) +
 ```{r}
 library(ggplot2)
 
-data(mpgdata)
-
-
 ggplot(mpg, aes(x = cyl, y = displ, color = displ)) +
   geom_point() +
-  labs(title = "Relationship between Number of Cylinders and Engine Displacement",
+  labs(title = "Relationship between No. of Cylinders and Engine Displacement",
        x = "Number of Cylinders",
        y = "Engine Displacement") +
   scale_color_continuous(name = "Engine Displacement") +
@@ -280,25 +270,23 @@ ggplot(months, aes(x = month, y = num_reviews, group = 1)) +
 ```
 #e. Get the relationship of variations and ratings. Which variations got the most highest in rating? Plot a graph to show its relationship. Show your solution and answer.
 ```{r}
-library(dplyr)
+Variation_Rating <- alexafile %>%
+  group_by(variation) %>%
+  summarise(avg_rating = mean(rating))
 
-ggplot(alexafile, aes(x = variation, y = rating, fill = variation)) +
-  geom_bar(stat = "summary", fun = "mean", position = "dodge") +
-  scale_fill_manual(values = rainbow(n = length(unique(alexafile$variation)))) +  
-  labs(title = "Relationship Between Variations and Ratings",
-       x = "Variations",
-       y = "Average Rating") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+Variation_Rating
 
-ratings <- alexafile %>%
-  group_by(variation)%>%
-  summarise(avearage_rating = mean(rating, na.rm = TRUE))
+highest_ratings <- Variation_Rating %>%
+  filter(avg_rating == max(avg_rating))
 
+highest_ratings 
 
-high_rate <- ratings %>%
- filter(average_rating  == max(average_rating)) %>%
-  pull(variation)
+#The highest rating is the walnut
 
-cat("The Variations that got the highest in rating is:",high_rate)
+ggplot(Variation_Rating, aes(x = variation, y = avg_rating)) +
+  geom_bar(stat = "identity", fill = "brown") +
+  labs(title = "Average Ratings by Variation",
+       x = "Variation",
+       y = "Average Rating") + theme(plot.title = element_text(hjust = 0.5),
+        axis.text.x = element_text(angle = 44, hjust = 1))
 ```
